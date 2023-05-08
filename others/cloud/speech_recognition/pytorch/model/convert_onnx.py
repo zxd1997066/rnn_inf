@@ -58,7 +58,7 @@ def convert(args):
     # Input to the model
     data = next(iter(train_loader))
     inputs, targets, input_percentages, target_sizes = data
-    inputs = torch.Tensor(inputs, requires_grad=False)
+    inputs = torch.Tensor(inputs, requires_grad=True)
 
     if params.cuda:
         inputs = inputs.cuda()
