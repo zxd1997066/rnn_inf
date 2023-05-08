@@ -14,4 +14,4 @@ inflect==4.1.0
 requests==2.23.0
 autopep8==1.5.1
 coverage==5.0.4
-numba==0.48.0
+numba
