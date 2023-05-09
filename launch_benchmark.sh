@@ -12,9 +12,9 @@ function main {
     set_environment
 
     pip install -r ${workload_dir}/requirements.txt
-   # pip uninstall -y numba llvmlite
+    pip uninstall -y llvmlite
    # conda install -c numba llvmdev -y
-   # pip install git+https://github.com/numba/llvmlite.git
+    pip install git+https://github.com/numba/llvmlite.git
    # pip install numba==
     # pip install --no-deps torchvision -f https://download.pytorch.org/whl/torch_stable.html
     if [ ! -e dataset ];then
