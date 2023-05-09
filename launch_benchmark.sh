@@ -11,7 +11,7 @@ function main {
     fetch_device_info
     set_environment
 
-    pip install -r ${workload_dir}/requirements.txt
+   # pip install -r ${workload_dir}/requirements.txt
     pip uninstall numba llvmlite -y
    # conda install -c numba llvmdev -y
    # pip install git+https://github.com/numba/llvmlite.git
