@@ -12,10 +12,11 @@ function main {
     set_environment
 
     pip install -r ${workload_dir}/requirements.txt
-   # pip uninstall -y llvmlite
+    pip uninstall numba llvmlite -y
    # conda install -c numba llvmdev -y
    # pip install git+https://github.com/numba/llvmlite.git
-    pip install numba==0.48.0 --no-deps
+    pip install numba==0.49.1
+    pip install -U llvmlite==0.32.1
     # pip install --no-deps torchvision -f https://download.pytorch.org/whl/torch_stable.html
     if [ ! -e dataset ];then
         ln -sf /home2/pytorch-broad-models/RNN-T/* .
