@@ -314,6 +314,15 @@ def main(args):
                 greedy_decoder=greedy_decoder,
                 labels=ctc_vocab,
                 args=args)
+    elif args.precision == "float16":
+        with torch.cpu.amp.autocast(enabled=True, dtype=torch.half):
+            eval(
+                data_layer=data_layer,
+                audio_processor=eval_transforms,
+                encoderdecoder=model,
+                greedy_decoder=greedy_decoder,
+                labels=ctc_vocab,
+                args=args)
     else:
         eval(
             data_layer=data_layer,
