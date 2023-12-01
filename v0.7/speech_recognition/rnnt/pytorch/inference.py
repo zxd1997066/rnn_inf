@@ -68,6 +68,10 @@ def parse_args():
     parser.add_argument("--seed", default=42, type=int, help='seed')
     parser.add_argument("--cuda",
                         action='store_true', help="use cuda", default=False)
+    parser.add_argument("--compile", action='store_true', default=False,
+                    help="enable torch.compile")
+    parser.add_argument("--backend", type=str, default='inductor',
+                    help="enable torch.compile backend")
     return parser.parse_args()
 
 
@@ -272,6 +276,8 @@ def main(args):
         audio_preprocessor = audio_preprocessor.to(memory_format=torch.channels_last)
         print("---- Use CL audio_preprocessor")
     audio_preprocessor.eval()
+    if args.compile:
+        audio_preprocessor = torch.compile(audio_preprocessor, backend=args.backend, options={"freezing": True})
     # IPEX
     if args.ipex:
         import intel_extension_for_pytorch as ipex
