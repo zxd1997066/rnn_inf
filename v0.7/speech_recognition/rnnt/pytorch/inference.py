@@ -312,7 +312,7 @@ def main(args):
     # Ideally, I would jit this as well... But this is just the constructor...
     greedy_decoder = RNNTGreedyDecoder(len(ctc_vocab) - 1, model)
     if args.precision == "bfloat16":
-        with torch.cpu.amp.autocast(enabled=True, dtype=torch.bfloat16):
+        with torch.autocast(device_type="cuda" if torch.cuda.is_available() else "cpu", enabled=True, dtype=torch.bfloat16):
             eval(
                 data_layer=data_layer,
                 audio_processor=eval_transforms,
@@ -321,7 +321,7 @@ def main(args):
                 labels=ctc_vocab,
                 args=args)
     elif args.precision == "float16":
-        with torch.cpu.amp.autocast(enabled=True, dtype=torch.half):
+        with torch.autocast(device_type="cuda" if torch.cuda.is_available() else "cpu", enabled=True, dtype=torch.half):
             eval(
                 data_layer=data_layer,
                 audio_processor=eval_transforms,
