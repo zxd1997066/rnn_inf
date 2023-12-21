@@ -13,10 +13,14 @@ function main {
 
     pip install -r ${workload_dir}/requirements.txt
     pip uninstall -y numba llvmlite
-    conda install -c numba llvmdev -y
-    pip install git+https://github.com/numba/llvmlite.git
-    #pip install -U numba
-    pip install numba==0.48
+    if [ "${device}" != "cuda" ];then
+        conda install -c numba llvmdev -y
+        pip install git+https://github.com/numba/llvmlite.git
+        #pip install -U numba
+        pip install numba==0.48
+    else
+        pip install numba
+    fi
     # pip install --no-deps torchvision -f https://download.pytorch.org/whl/torch_stable.html
     if [ ! -e dataset ];then
         ln -sf /home2/pytorch-broad-models/RNN-T/* .
