@@ -12,7 +12,7 @@ function main {
     set_environment
 
     pip install -r ${workload_dir}/requirements.txt
-    pip uninstall -y numba llvmlite
+    # pip uninstall -y numba llvmlite
     # if [ "${device}" != "cuda" ];then
     #     conda install -c numba llvmdev -y
     #     pip install git+https://github.com/numba/llvmlite.git
