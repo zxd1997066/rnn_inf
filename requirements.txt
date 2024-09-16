@@ -14,4 +14,5 @@ inflect==4.1.0
 requests==2.23.0
 autopep8==1.5.1
 coverage==5.0.4
-
+llvm==10.0.0
+llvmlite==0.34.0
